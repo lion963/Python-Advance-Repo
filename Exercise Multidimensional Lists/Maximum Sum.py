@@ -1,7 +1,7 @@
 rows, columns = map(int, input().split())
 
 matrix = []
-max_sum_square = 0
+max_sum_square = -1000000
 square_matrix = []
 row = None
 column = None
