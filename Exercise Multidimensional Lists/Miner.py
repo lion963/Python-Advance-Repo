@@ -24,25 +24,25 @@ for i in range(rows):
 for el in commands:
     if el == 'right':
         try:
-            if matrix[row][column + 1]:
+            if matrix[row][column + 1] and row >= 0 and column + 1 >= 0:
                 column += 1
         except:
             IndexError
     elif el == 'left':
         try:
-            if matrix[row][column - 1]:
+            if matrix[row][column - 1] and row >= 0 and column - 1 >= 0:
                 column -= 1
         except:
             IndexError
     elif el == 'up':
         try:
-            if matrix[row - 1][column]:
+            if matrix[row - 1][column] and row - 1 >= 0 and column >= 0:
                 row -= 1
         except:
             IndexError
     elif el == 'down':
         try:
-            if matrix[row + 1][column]:
+            if matrix[row + 1][column] and row + 1 >= 0 and column >= 0:
                 row += 1
         except:
             IndexError
