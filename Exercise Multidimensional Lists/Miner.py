@@ -18,46 +18,46 @@ for i in range(rows):
         if matrix[i][j] == 'c':
             coal += 1
         elif matrix[i][j] == 's':
-            index_r = i
-            index_c = j
+            row = i
+            column = j
 
 for el in commands:
     if el == 'right':
         try:
-            if matrix[index_r][index_c + 1]:
-                index_c += 1
+            if matrix[row][column + 1]:
+                column += 1
         except:
             IndexError
     elif el == 'left':
         try:
-            if matrix[index_r][index_c - 1]:
-                index_c -= 1
+            if matrix[row][column - 1]:
+                column -= 1
         except:
             IndexError
     elif el == 'up':
         try:
-            if matrix[index_r - 1][index_c]:
-                index_r -= 1
+            if matrix[row - 1][column]:
+                row -= 1
         except:
             IndexError
     elif el == 'down':
         try:
-            if matrix[index_r + 1][index_c]:
-                index_r += 1
+            if matrix[row + 1][column]:
+                row += 1
         except:
             IndexError
 
-    if matrix[index_r][index_c] == 'c':
+    if matrix[row][column] == 'c':
         count_coal += 1
-        matrix[index_r][index_c] = '*'
+        matrix[row][column] = '*'
         if count_coal == coal:
-            print(f'You collected all coals! ({index_r}, {index_c})')
+            print(f'You collected all coals! ({row}, {column})')
             flag = False
             break
-    elif matrix[index_r][index_c] == 'e':
-        print(f'Game over! ({index_r}, {index_c})')
+    elif matrix[row][column] == 'e':
+        print(f'Game over! ({row}, {column})')
         flag = False
         break
 
 if flag:
-    print(f'{coal - count_coal} coals left. ({index_r}, {index_c})')
+    print(f'{coal - count_coal} coals left. ({row}, {column})')
