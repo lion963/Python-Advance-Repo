@@ -21,6 +21,21 @@ def multiply_bunny(row, column, matrix):
         IndexError
     return matrix
 
+# def multiply_bunny(row, column, matrix):
+#     if 0 <= row < rows and 0 <= column + 1 < columns:
+#         if not matrix[row][column + 1] == 'B':
+#             matrix[row][column + 1] = 'B'
+#     if 0 <= row < rows and 0 <= column - 1 < columns:
+#         if not matrix[row][column - 1] == 'B':
+#             matrix[row][column - 1] = 'B'
+#     if 0 <= row - 1 < rows and 0 <= column < columns:
+#         if not matrix[row - 1][column] == 'B':
+#             matrix[row - 1][column] = 'B'
+#     if 0 <= row + 1 < rows and 0 <= column < columns:
+#         if not matrix[row + 1][column] == 'B':
+#             matrix[row + 1][column] = 'B'
+#     return matrix
+
 
 n, m = map(int, input().split())
 
