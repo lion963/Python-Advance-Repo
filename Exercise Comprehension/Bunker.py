@@ -16,8 +16,6 @@ for i in range(n):
         quality, valu = quality_data.split(':')
         if items not in items_dict:
             items_dict[items] = {quantity: int(value), quality: int(valu)}
-        else:
-            items_dict[items] = {quantity: int(value), quality: int(valu)}
 
 for item, value in items_dict.items():
     sum_quantity += value['quantity']
