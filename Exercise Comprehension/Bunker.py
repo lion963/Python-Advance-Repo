@@ -21,7 +21,12 @@ for item, value in items_dict.items():
     sum_quantity += value['quantity']
     sum_quality += value['quality']
 
+category_count = 0
+for category, value in category_dict.items():
+    if value:
+        category_count += 1
+
 print(f'Count of items: {sum_quantity}')
-print(f'Average quality: {sum_quality / len(category_dict):.2f}')
+print(f'Average quality: {sum_quality / category_count:.2f}')
 for category, items in category_dict.items():
     print(f"{category} -> {', '.join(items)}")
