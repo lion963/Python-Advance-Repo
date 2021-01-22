@@ -11,7 +11,7 @@ def best_list_pureness(*args):
                 best_sum = sum
                 rotation = 0
     else:
-        for i in range(k):
+        for i in range(k + 1):
             sum = 0
             for j in range(len(num_list)):
                 sum += num_list[j] * j
