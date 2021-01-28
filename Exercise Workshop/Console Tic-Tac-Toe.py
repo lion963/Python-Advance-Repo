@@ -1,6 +1,38 @@
 from math import ceil
 
 
+def setup():
+    global player_one, player_two
+    player_one_name = input('Player one name: ')
+    player_two_name = input('Player two name: ')
+    player_one_sign = input(f"{player_one_name} would you like to play with 'x' or 'o'? ")
+    player_two_sign = 'x' if player_one_sign == 'o' else 'o'
+    player_one = [player_one_name, player_one_sign]
+    player_two = [player_two_name, player_two_sign]
+    print("This is the numeration of the board:")
+    print("| 1 | 2 | 3 |")
+    print("| 4 | 5 | 6 |")
+    print("| 7 | 8 | 9 |")
+    print(f"{player_one_name} starts first!")
+    return  player_one, player_two
+
+
+def play(current, board):
+    choice = int(input(f"{current[0]} choose a free position [1-9]: "))
+    row = ceil(choice / 3) - 1
+    col = choice % 3 - 1
+    board[row][col] = current[1]
+    draw_board(board)
+    check_if_won(current, board)
+
+
+def draw_board(board):
+    for row in board:
+        print('| ', end='')
+        print(' | '.join([str(x) for x in row]), end='')
+        print(' |')
+
+
 def check_if_won(current, board):
     global loop
     first_row = all([x == current[1] for x in board[0]])
@@ -16,39 +48,6 @@ def check_if_won(current, board):
         print(f"{current[0]} won!")
         loop = False
 
-
-def draw_board(board):
-    for row in board:
-        print('| ', end='')
-        print(' | '.join([str(x) for x in row]), end='')
-        print(' |')
-
-
-def play(current, board):
-    choice = int(input(f"{current[0]} choose a free position [1-9]: "))
-    row = ceil(choice / 3) - 1
-    col = choice % 3 - 1
-    board[row][col] = current[1]
-    draw_board(board)
-    check_if_won(current, board)
-
-
-def setup():
-    global player_one, player_two
-    player_one_name = input('Player one name: ')
-    player_two_name = input('Player two name: ')
-    player_one_sign = input(f"{player_one_name} would you like to play with 'x' or 'o'? ")
-    player_two_sign = 'x' if player_one_sign == 'o' else 'o'
-    player_one = [player_one_name, player_one_sign]
-    player_two = [player_two_name, player_two_sign]
-    print("This is the numeration of the board:")
-    print("| 1 | 2 | 3 |")
-    print("| 4 | 5 | 6 |")
-    print("| 7 | 8 | 9 |")
-    print(f"{player_one_name} starts first!")
-    return player_one, player_two
-
-
 def main():
     player_one = None
     player_two = None
@@ -61,6 +60,5 @@ def main():
     while loop:
         play(current, board)
         current, other = other, current
-
 
 main()
