@@ -22,7 +22,7 @@ def modify_matrix(col, player, matrix):
     return matrix
 
 
-def validate_column(col, matrix):
+def validate_column(col):
     if 0 <= col < len(matrix[0]):
         return True
 
@@ -107,16 +107,21 @@ def check_winner(matrix, n):
     return False
 
 
-def setup(players, matrix):
-    loop = True
+while True:
     is_winner = False
+    matrix = create_matrix(int(input('Please input rows:\n')), int(input('Please input columns:\n')))
+    print_matrix(matrix)
+
+    players = int(input('Please enter the number of players\n'))
+
     while True:
         if is_winner:
             break
+
         for i in range(1, players + 1):
             while True:
                 column = int(input(f'Player {i}, please choose a column:\n'))
-                if validate_column(column - 1, matrix):
+                if validate_column(column - 1):
                     matrix = modify_matrix(column - 1, i, matrix)
                     print_matrix(matrix)
                     break
@@ -125,19 +130,10 @@ def setup(players, matrix):
 
             if check_winner(matrix, i):
                 print(print_art('The winner is palyer: ', str(i)))
-                loop = False
                 is_winner = True
                 break
 
-
-def main():
-    is_winner = False
-    matrix = create_matrix(int(input('Please input rows:\n')), int(input('Please input columns:\n')))
-    print_matrix(matrix)
-    players = int(input('Please enter the number of players\n'))
-    loop = True
-
-    while loop:
-        loop=setup(players, matrix)
-
-main()
+    if input('Continue: y/n\n') == 'y':
+        pass
+    else:
+        break
