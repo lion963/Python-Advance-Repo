@@ -71,7 +71,7 @@ def main():
     other = player_two
     loop = True
 
-    while True:
+    while loop:
         play(current, board)
         current, other = other, current
 
