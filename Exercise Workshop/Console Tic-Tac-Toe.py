@@ -42,10 +42,14 @@ def check_if_won(current, board):
 def play(current, board):
     while True:
         while True:
-            choice = int(input(f"{current[0]} choose a free position [1-9]: "))
-            if 1 <= choice <= 9:
-                break
-            print('Invalid choice of number')
+            choice = input(f"{current[0]} choose a free position [1-9]: ")
+            if not choice.isdigit():
+                print('Please input int')
+            else:
+                choice = int(choice)
+                if 1 <= choice <= 9:
+                    break
+                print('Invalid choice of number')
         row = ceil(choice / 3) - 1
         col = choice % 3 - 1
         if board[row][col] == ' ':
