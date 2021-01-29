@@ -2,10 +2,16 @@ from math import ceil
 
 
 def setup():
-    global player_one, player_two
+    player_one = None
+    player_two = None
     player_one_name = input('Player one name: ')
     player_two_name = input('Player two name: ')
-    player_one_sign = input(f"{player_one_name} would you like to play with 'x' or 'o'? ")
+    while True:
+        player_one_sign = input(f"{player_one_name} would you like to play with 'x' or 'o'? ")
+        if player_one_sign == 'x' or player_one_sign == 'o':
+            break
+        else:
+            print('Invalid choice')
     player_two_sign = 'x' if player_one_sign == 'o' else 'o'
     player_one = [player_one_name, player_one_sign]
     player_two = [player_two_name, player_two_sign]
@@ -34,9 +40,18 @@ def check_if_won(current, board):
 
 
 def play(current, board):
-    choice = int(input(f"{current[0]} choose a free position [1-9]: "))
-    row = ceil(choice / 3) - 1
-    col = choice % 3 - 1
+    while True:
+        while True:
+            choice = int(input(f"{current[0]} choose a free position [1-9]: "))
+            if 1 <= choice <= 9:
+                break
+            print('Invalid choice of number')
+        row = ceil(choice / 3) - 1
+        col = choice % 3 - 1
+        if board[row][col] == ' ':
+            break
+        else:
+            print(f'The space {choice} is not available')
     board[row][col] = current[1]
     draw_board(board)
     check_if_won(current, board)
@@ -50,16 +65,14 @@ def draw_board(board):
 
 
 def main():
-    player_one = None
-    player_two = None
     board = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
     player_one, player_two = setup()
     current = player_one
     other = player_two
     loop = True
 
-    while loop:
-        loop = play(current, board)
+    while True:
+        play(current, board)
         current, other = other, current
 
 
