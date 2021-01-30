@@ -32,19 +32,34 @@ while male_stack and female_queue:
                 female_queue.popleft()
             else:
                 matches += 1
-                if len(female_queue) > 1:
-                    female_queue.popleft()
-                    female_queue.popleft()
-                else:
-                    female_queue.popleft()
+                while True:
+                    if len(female_queue) > 1:
+                        female_queue.popleft()
+                        female_queue.popleft()
+                    else:
+                        female_queue.popleft()
+                    if len(male_stack) > 1:
+                        male_stack.pop()
+                        male_stack.pop()
+                    else:
+                        male_stack.pop()
+        else:
+            if male_stack[-1] % 25 == 0:
                 if len(male_stack) > 1:
                     male_stack.pop()
                     male_stack.pop()
                 else:
                     male_stack.pop()
-        else:
-            male_stack[-1] -= 2
-            female_queue.popleft()
+            else:
+                male_stack[-1] -= 2
+                if female_queue[0] % 25 == 0:
+                    if len(female_queue) > 1:
+                        female_queue.popleft()
+                        female_queue.popleft()
+                    else:
+                        female_queue.popleft()
+                else:
+                    female_queue.popleft()
 
 print(f'Matches: {matches}')
 if male_stack:
