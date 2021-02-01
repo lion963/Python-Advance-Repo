@@ -72,3 +72,4 @@ if female_queue:
     print(*female_queue, sep=', ')
 else:
     print(f'Females left: none')
+
