@@ -1,73 +1,39 @@
 from collections import deque
 
-male_stack = list(map(int, input().split()))
-female_queue = deque(list(map(int, input().split())))
+males = list(map(int, input().split()))
+females = deque(map(int, input().split()))
+
 matches = 0
+while males and females:
+    current_male = males[-1]
+    current_female = females[0]
 
-while male_stack and female_queue:
-    while True:
-        if female_queue:
-            if female_queue[0] <= 0:
-                female_queue.popleft()
-            else:
-                break
-        else:
-            break
+    if current_male <= 0:
+        males.pop()
+        continue
+    elif current_female <= 0:
+        females.popleft()
+        continue
+    elif current_male % 25 == 0:
+        males.pop()
+        continue
+    elif current_female % 25 == 0:
+        females.popleft()
+        continue
+    elif current_male == current_female:
+        females.popleft()
+        males.pop()
+        matches += 1
+    else:
+        females.popleft()
+        males[-1] -= 2
 
-    while True:
-        if male_stack:
-            if male_stack[-1] <= 0:
-                male_stack.pop()
-            else:
-                break
-        else:
-            break
-
-    # equal checking
-    if male_stack and female_queue:
-        if male_stack[-1] == female_queue[0]:
-            if not female_queue[0] % 25 == 0:
-                matches += 1
-                male_stack.pop()
-                female_queue.popleft()
-            else:
-                matches += 1
-                if len(female_queue) > 1:
-                    female_queue.popleft()
-                    female_queue.popleft()
-                else:
-                    female_queue.popleft()
-                if len(male_stack) > 1:
-                    male_stack.pop()
-                    male_stack.pop()
-                else:
-                    male_stack.pop()
-        else:
-            if male_stack[-1] % 25 == 0:
-                if len(male_stack) > 1:
-                    male_stack.pop()
-                    male_stack.pop()
-                else:
-                    male_stack.pop()
-            else:
-                male_stack[-1] -= 2
-                if female_queue[0] % 25 == 0:
-                    if len(female_queue) > 1:
-                        female_queue.popleft()
-                        female_queue.popleft()
-                    else:
-                        female_queue.popleft()
-                else:
-                    female_queue.popleft()
-
-print(f'Matches: {matches}')
-if male_stack:
-    print(f'Males left: ', end='')
-    print(*male_stack[::-1], sep=', ')
+print(f"Matches: {matches}")
+if males:
+    print(f"Males left: {(', '.join(map(str, reversed(males))))}")
 else:
-    print(f'Males left: none')
-if female_queue:
-    print(f'Females left: ', end='')
-    print(*female_queue, sep=', ')
+    print(f"Males left: none")
+if females:
+    print(f"Females left: {(', '.join(map(str, females)))}")
 else:
-    print(f'Females left: none')
+    print(f"Females left: none")
