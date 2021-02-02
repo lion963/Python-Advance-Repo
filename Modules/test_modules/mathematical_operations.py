@@ -15,7 +15,7 @@ def division(num1, num2):
 
 
 def last(num1, num2):
-    return num1 ^ num2
+    return num1 ** num2
 
 
 mapper = {
