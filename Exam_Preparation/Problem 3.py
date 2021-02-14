@@ -16,4 +16,4 @@ def get_magic_triangle(n):
     return  matrix
 
 
-get_magic_triangle(5)
+print(get_magic_triangle(5))

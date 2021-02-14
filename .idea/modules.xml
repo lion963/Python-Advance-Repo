@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Python-Advance-Repo.iml" filepath="$PROJECT_DIR$/.idea/Python-Advance-Repo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../SoftUni-Python-Fundamentals-/.idea/SoftUni-Python-Fundamentals-.iml" filepath="$PROJECT_DIR$/../SoftUni-Python-Fundamentals-/.idea/SoftUni-Python-Fundamentals-.iml" />
     </modules>
   </component>
 </project>
